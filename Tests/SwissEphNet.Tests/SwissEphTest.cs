@@ -11,26 +11,15 @@ namespace SwissEphNet.Tests
 
         public SwissEphTest()
         {
-#if NET_STANDARD
             _OldCulture = CultureInfo.CurrentCulture;
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-#else
-            _OldCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
-            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
-#endif
         }
 
         public void Dispose()
         {
-#if NET_STANDARD
             CultureInfo.CurrentCulture = _OldCulture;
             CultureInfo.CurrentUICulture = _OldCulture;
-#else
-            System.Threading.Thread.CurrentThread.CurrentCulture = _OldCulture;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = _OldCulture;
-#endif
         }
 
         [Fact]
@@ -43,7 +32,7 @@ namespace SwissEphNet.Tests
         public void TestVersion() {
             using (var target = new SwissEph()) {
                 Assert.Equal("2.08", target.swe_version());
-                Assert.Equal("2.08.00-net-0002", target.swe_dotnet_version());
+                Assert.Equal("2.08.00-net-0003", target.swe_dotnet_version());
             }
         }
 

@@ -103,9 +103,12 @@ namespace SwissEphNet
                     return Value;
 
                 case TypeCode.Single:
-                    return (UInt32)((float)Value);
+                    // Casting a negative/out-of-range float directly to UInt32 is unspecified
+                    // by the C# language spec and varies across .Net runtimes/JITs; going through
+                    // the signed Int32 cast first keeps the conversion well-defined and portable.
+                    return unchecked((UInt32)(int)((float)Value));
                 case TypeCode.Double:
-                    return (ulong)((double)Value);
+                    return unchecked((ulong)(long)((double)Value));
                 case TypeCode.Decimal:
                     return (ulong)((decimal)Value);
 

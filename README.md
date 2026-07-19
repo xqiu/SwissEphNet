@@ -3,13 +3,16 @@
 This project is an Astrodienst Swiss Ephemeris (http://www.astro.com/swisseph/) .Net portage from 
 C (version 2.06) to C# in a PCL/.Net Core project for cross platform usage.
 
-Since version 2.6.0.21, the nuget package includes 2 versions:
-- .Net 4.0
-- .Net Standard 1.0
+Since version 2.8.0.3, the nuget package includes 3 versions:
+- .Net Standard 2.0
+- .Net 8.0
+- .Net 10.0
 
 The programs SweMini and SweTest are availables in 2 versions:
-- .Net 4.0
-- .Net Core App 1.0
+- .Net 8.0
+- .Net 10.0
+
+The SweWin sample application targets .Net 8.0 and .Net 10.0 (Windows only).
 
 These programs are available in the "binary.zip" of [each release](https://github.com/ygrenier/SwissEphNet/releases).
 
@@ -23,6 +26,21 @@ lot of sample applications for using the library on different application types.
 For working with the async context read the [this paragraph](https://github.com/ygrenier/SwissEphNet/wiki/Loading-files#works-in-an-async-context).
 
 # Breaking changes
+
+## V:2.8.0.3
+
+The library, samples and tests are updated for the latest .Net versions:
+- The nuget package now targets .NET Standard 2.0, .NET 8.0 and .NET 10.0. Support for .NET
+  Framework 4.0 and .NET Standard 1.0 has been dropped.
+- SweMini and SweTest now target .NET 8.0 and .NET 10.0 (dropping .NET 4.0 and .NET Core App 1.0).
+- SweWin was migrated to the SDK-style project format and now targets .NET 8.0 and .NET 10.0
+  (Windows only).
+- Tests now run on .NET 8.0 and .NET 10.0 (dropping .NET Framework 4.6 and .NET Core App 2.1),
+  and test dependencies (xunit, xunit.runner.visualstudio, Microsoft.NET.Test.Sdk) were updated
+  to their latest versions.
+
+If your project still targets .NET Framework 4.0 or .NET Standard 1.0, stay on the 2.8.0.2
+release of this package.
 
 ## V:2.6.0.21
 
@@ -68,7 +86,7 @@ Now SwissEphNet is available as a [Nuget package](https://www.nuget.org/packages
 
 Or you can download the binaries in [the last release](https://github.com/ygrenier/SwissEphNet/releases/latest).
 
-SwissEphNet is a Portable Class Library with support for .Net 4+, Silverlight 5, Windows Phone 8, Windows Store apps, Xamarin.Android and Xamarin.iOS.
+SwissEphNet targets .NET Standard 2.0, .NET 8.0 and .NET 10.0.
 
 ## Create an instance
 
