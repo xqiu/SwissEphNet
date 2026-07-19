@@ -103,12 +103,20 @@ namespace SwissEphNet
                     return Value;
 
                 case TypeCode.Single:
-                    // Casting a negative/out-of-range float directly to UInt32 is unspecified
-                    // by the C# language spec and varies across .Net runtimes/JITs; going through
-                    // the signed Int32 cast first keeps the conversion well-defined and portable.
-                    return unchecked((UInt32)(int)((float)Value));
+                    {
+                        // Casting a negative float directly to UInt32 is unspecified by the C#
+                        // language spec and varies across .Net runtimes/JITs. Route only negative
+                        // values through the well-defined Int32 cast; non-negative values are cast
+                        // directly so values above Int32.MaxValue but within UInt32's range (e.g.
+                        // 3_000_000_000f) still convert correctly.
+                        float f = (float)Value;
+                        return f < 0 ? unchecked((UInt32)(int)f) : (UInt32)f;
+                    }
                 case TypeCode.Double:
-                    return unchecked((ulong)(long)((double)Value));
+                    {
+                        double d = (double)Value;
+                        return d < 0 ? unchecked((ulong)(long)d) : (ulong)d;
+                    }
                 case TypeCode.Decimal:
                     return (ulong)((decimal)Value);
 

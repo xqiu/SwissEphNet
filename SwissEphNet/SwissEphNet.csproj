@@ -6,7 +6,7 @@
     <RootNamespace>SwissEphNet</RootNamespace>
     <PackageId>SwissEphNet</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.8.0.3</Version>
+    <Version>2.8.0.4</Version>
     <Authors>Yan Grenier</Authors>
     <Company>Yan Grenier</Company>
     <Product>SwissEphNet</Product>
@@ -16,7 +16,14 @@
     <RepositoryUrl>https://github.com/ygrenier/SwissEphNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Swiss Ephemeris</PackageTags>
-    <PackageReleaseNotes>2.8.0.3:
+    <PackageReleaseNotes>2.8.0.4:
+- Fix C.ToUnsigned to avoid unspecified float/double-to-unsigned conversion behavior that
+  diverged between .Net 8 and .Net 10 for negative values, while preserving correct
+  conversion of positive values above Int32/Int64 range but within UInt32/UInt64 range
+- Update make-dist.ps1 packaging paths for the new net8.0/net10.0 (and net8.0-windows/
+  net10.0-windows for SweWin) target frameworks
+
+2.8.0.3:
 - Drop net40/netstandard1.0 targets; now targets netstandard2.0, net8.0 and net10.0
 - Update dependent sample/test projects to .NET 8/.NET 10
 
